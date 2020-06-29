@@ -16,12 +16,18 @@ const App = () => {
     )
   }
 
+  const Part = () => {
+    return(
+      <p>{partname} {excercisename}</p>
+    )
+  }
+
   const Content = () => {
     return(
       <>
-      <p>{part1} {exercises1}</p>
-      <p>{part2} {exercises2}</p>
-      <p>{part3} {exercises3}</p>
+      <Part partname={part1} excercisename={exercises1} />
+      <Part partname={part2} excercisename={exercises2} />
+      <Part partname={part3} excercisename={exercises3} />
       </>
     )
   }
