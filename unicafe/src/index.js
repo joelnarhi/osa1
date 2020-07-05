@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Statistics = props => {
-  if (props.all == 0) {
+  if (props.all === 0) {
     return (
       <>
       <p>No feedback given</p>
@@ -11,15 +11,26 @@ const Statistics = props => {
   }
   return (
     <>
-      Good {props.good} <br />
-      Neutral {props.neutral}<br />
-      Bad {props.bad}<br />
-      All {props.all}<br />
-      Avarage {props.avarage}<br />
-      Positive {props.positive} %
+      <StatisticLine text="Good" value={props.good} /><br />
+      <StatisticLine text="Neutral" value={props.neutral} /><br />
+      <StatisticLine text="Bad" value={props.bad} /><br />
+      <StatisticLine text="All" value={props.all} /><br />
+      <StatisticLine text="Avarage" value={props.avarage} /><br />
+      <StatisticLine text="Positive" value={props.positive} /> %
+
     </>
   )
 }
+
+const Button =({ onClick, text}) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
+
+const StatisticLine = ({text, value}) => (
+  <>{text} {value}</>
+)
 
 const App = (props) => {
   // tallenna napit omaan tilaansa
@@ -57,9 +68,9 @@ const App = (props) => {
   return (
     <>
       <h1>give feedback</h1>
-      <button onClick={incGoodOne}>good</button>
-      <button onClick={incNeutralOne}>neutral</button>
-      <button onClick={incBadOne}>bad</button>
+      <Button onClick={incGoodOne} text='good' />
+      <Button onClick={incNeutralOne} text='neutral' />
+      <Button onClick={incBadOne} text='bad' />
       <h1>Statistics</h1>
       <Statistics good={good} neutral={neutral} bad={bad}  all={all} avarage={avarage} positive={positive} />
     </>
