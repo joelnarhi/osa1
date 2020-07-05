@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-
+const Button =({ onClick, text }) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
@@ -12,22 +16,32 @@ const App = (props) => {
   }
 
   const doVote = () => {
-    
-    const copy = {...points}
+    const copy = [...points]
     copy[selected] += 1
     setPoints(copy)
     console.log('I voted', copy[selected])
   }
 
+  const high = Math.max(...points)
+  const win = points.findIndex(x => x === high)
+
+  console.log(high)
   
 
   return (
-    <><p>
+    <>
+    <h1>Anecdote of the day</h1>
+    <p>
       {props.anecdotes[selected]}<br />
       has {points[selected]} votes
       </p>
-      <button onClick={doVote}>Vote</button>
-      <button onClick={nextAnec}>Next anecdote</button>
+      <Button onClick={doVote} text='vote' />
+      <Button onClick={nextAnec} text='Next anecdote' />
+    <h1>Anecdote with most votes</h1>
+    <p>
+      {props.anecdotes[win]}<br />
+      has {points[win]} votes
+    </p>
     </>
   )
 }
