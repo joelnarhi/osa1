@@ -8,11 +8,34 @@ const App = (props) => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(0)
+  
 
-  const incGoodOne = () => setGood(good + 1)
-  const incNeutralOne = () => setNeutral( neutral + 1)
-  const incBadOne = () => setBad(bad + 1)
+  const incGoodOne = () => {
+    setGood(good + 1)
+    setAll(all + 1)
+  }
+  const incNeutralOne = () => {
+    setNeutral( neutral + 1)
+    setAll(all + 1)
+  }
+  const incBadOne = () => {
+    setBad(bad + 1)
+    setAll(all + 1)
+  }
+  
+ 
+  const cntAvarage = () => {
+    return (good - bad) / all
+  }
 
+  const avarage = cntAvarage(good, bad, all)
+
+  const cntPositive = () => {
+    return (good / all) * 100
+  }
+
+  const positive = cntPositive(good, all)
 
 
   return (
@@ -22,7 +45,7 @@ const App = (props) => {
       <button onClick={incNeutralOne}>neutral</button>
       <button onClick={incBadOne}>bad</button>
       <h1>statistics</h1>
-      <Display good={good} neutral={neutral} bad={bad} />
+      <Display good={good} neutral={neutral} bad={bad} all={all} avarage={avarage} positive={positive} />
       
     </>
   )
@@ -31,7 +54,12 @@ const App = (props) => {
 const Display = (props) => {
   return (
     <>
-      Good {props.good} <br />Neutral {props.neutral}<br />Bad {props.bad}
+      Good {props.good} <br />
+      Neutral {props.neutral}<br />
+      Bad {props.bad}<br />
+      All {props.all}<br />
+      Avarage {props.avarage}<br />
+      Positive {props.positive} %
     </>
   )
 }
