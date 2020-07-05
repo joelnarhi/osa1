@@ -11,13 +11,16 @@ const Statistics = props => {
   }
   return (
     <>
-      <StatisticLine text="Good" value={props.good} /><br />
-      <StatisticLine text="Neutral" value={props.neutral} /><br />
-      <StatisticLine text="Bad" value={props.bad} /><br />
-      <StatisticLine text="All" value={props.all} /><br />
-      <StatisticLine text="Avarage" value={props.avarage} /><br />
-      <StatisticLine text="Positive" value={props.positive} /> %
-
+    <table>
+    <tbody>
+      <StatisticLine text="Good" value={props.good} />
+      <StatisticLine text="Neutral" value={props.neutral} />
+      <StatisticLine text="Bad" value={props.bad} />
+      <StatisticLine text="All" value={props.all} />
+      <StatisticLine text="Avarage" value={props.avarage} />
+      <StatisticLine text="Positive" value={props.positive} />
+      </tbody>
+      </table>
     </>
   )
 }
@@ -29,7 +32,7 @@ const Button =({ onClick, text}) => (
 )
 
 const StatisticLine = ({text, value}) => (
-  <>{text} {value}</>
+  <><tr><td>{text}</td><td>{value}</td></tr></>
 )
 
 const App = (props) => {
@@ -60,7 +63,7 @@ const App = (props) => {
   const avarage = cntAvarage(good, bad, all)
 
   const cntPositive = () => {
-    return (good / all) * 100
+    return (good / all) * 100 + ' %'
   }
 
   const positive = cntPositive(good, all)
